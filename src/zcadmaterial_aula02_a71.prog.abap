@@ -10,35 +10,30 @@ REPORT zcadmaterial_aula02_a71.
 * CRIANDO/DEFININDO ESTRUTURAS
 DATA: begin of produto,
   descricao       TYPE c LENGTH 40,
-  categoria(10)   TYPE c VALUE 'VERÃO',
-  infoadicional   TYPE string,
   codigo          TYPE n LENGTH 10 VALUE 32,
-  estoque         TYPE i VALUE 100,
-  preco           TYPE p DECIMALS 2 VALUE '30.87',
-  data_fabricacao TYPE d VALUE '20221203',
-  hora_fabricacao TYPE t VALUE '092805',
-  marca_propria   TYPE abap_bool,
+
   END OF produto.
 
-*operações aritméticas
-DATA total TYPE p DECIMALS 2.
-total = produto-preco * produto-estoque.
+*Definindo tabela LIKE a partir de uma estrutura
+DATA: produtos LIKE TABLE OF produto.
 
-*ACESSANDO AS PROPRIEDADES DA ESTRUTURA: produto
-produto-descricao = 'Camisa de Lycra'.
-produto-infoadicional = 'Produzido na zona franca de Manaus e exportado pela empresa catarinense Mormaii'.
-produto-marca_propria = abap_true.
+*Criando Registro para a tabela produtos
+produto-codigo = 31.
+produto-descricao = 'azeitona verde'.
 
+*inserindo os dados da estrutura na tabela produtos
+insert produto into table produtos.
 
-*ACESSANDO AS PROPRIEDADES DA ESTRUTURA: produto
+produto-codigo = 32.
+produto-descricao = 'café solúvel'.
+
+insert produto into table produtos.
+
+*acessando e imprimindo os dados de uma tabela a partir do índice
 WRITE:
-/ 'Produto', 30 produto-descricao,
-/ 'Categoria', 30 produto-categoria,
-/ 'Informações Adicionais', 30 produto-infoadicional,
-/ 'Código', 30 produto-codigo,
-/ 'Estoque', 30 produto-estoque,
-/ 'Preço', 30 produto-preco,
-/ 'Data de Fabricação', 30 produto-data_fabricacao,
-/ 'Horário', 30 produto-hora_fabricacao,
-/ 'Marca Propria', 30 produto-marca_propria,
-/ 'Total', 30 total.
+/ 'Codigo:', produtos[ 1 ]-codigo,
+/ 'Produto: ', produtos[ 1 ]-descricao.
+
+WRITE:
+/ 'Codigo:', produtos[ 2 ]-codigo,
+/ 'Produto: ', produtos[ 2 ]-descricao.
