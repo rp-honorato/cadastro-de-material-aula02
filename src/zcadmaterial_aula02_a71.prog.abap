@@ -7,7 +7,7 @@ REPORT zcadmaterial_aula02_a71.
 
 *DEFINIÇÃO DE MATERIAL
 
-*DEFININDO ESTRUTURAS
+* CRIANDO/DEFININDO ESTRUTURAS
 DATA: begin of produto,
   descricao       TYPE c LENGTH 40,
   categoria(10)   TYPE c VALUE 'VERÃO',
@@ -24,10 +24,13 @@ DATA: begin of produto,
 DATA total TYPE p DECIMALS 2.
 total = produto-preco * produto-estoque.
 
+*ACESSANDO AS PROPRIEDADES DA ESTRUTURA: produto
 produto-descricao = 'Camisa de Lycra'.
 produto-infoadicional = 'Produzido na zona franca de Manaus e exportado pela empresa catarinense Mormaii'.
 produto-marca_propria = abap_true.
 
+
+*ACESSANDO AS PROPRIEDADES DA ESTRUTURA: produto
 WRITE:
 / 'Produto', 30 produto-descricao,
 / 'Categoria', 30 produto-categoria,
