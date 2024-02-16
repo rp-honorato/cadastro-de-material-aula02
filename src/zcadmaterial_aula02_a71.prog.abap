@@ -8,11 +8,11 @@ REPORT zcadmaterial_aula02_a71.
 *DEFINIÇÃO DE MATERIAL
 
 * CRIANDO/DEFININDO ESTRUTURAS
-DATA: begin of produto,
-  descricao       TYPE c LENGTH 40,
-  codigo          TYPE n LENGTH 10 VALUE 32,
+DATA: BEGIN OF produto,
+        descricao TYPE c LENGTH 40,
+        codigo    TYPE n LENGTH 10 VALUE 32,
 
-  END OF produto.
+      END OF produto.
 
 *Definindo tabela LIKE a partir de uma estrutura
 DATA: produtos LIKE TABLE OF produto.
@@ -22,12 +22,18 @@ produto-codigo = 31.
 produto-descricao = 'azeitona verde'.
 
 *inserindo os dados da estrutura na tabela produtos
-insert produto into table produtos.
+INSERT produto INTO TABLE produtos.
 
 produto-codigo = 32.
 produto-descricao = 'café solúvel'.
 
-insert produto into table produtos.
+INSERT produto INTO TABLE produtos.
+
+produto-codigo = 33.
+produto-descricao = 'pao integral'.
+
+*Opção 2 - Comando Append
+APPEND produto TO produtos.
 
 *acessando e imprimindo os dados de uma tabela a partir do índice
 WRITE:
@@ -37,3 +43,7 @@ WRITE:
 WRITE:
 / 'Codigo:', produtos[ 2 ]-codigo,
 / 'Produto: ', produtos[ 2 ]-descricao.
+
+WRITE:
+/ 'Codigo:', produtos[ 3 ]-codigo,
+/ 'Produto: ', produtos[ 3 ]-descricao.
